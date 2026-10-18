@@ -33,7 +33,9 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str = ""
     JWT_EXPIRE_HOURS: int = 24
     JWT_ALGORITHM: str = "HS256"
-    CORS_ALLOWED_ORIGINS: str = "http://127.0.0.1:5173,http://localhost:5173"
+    CORS_ALLOWED_ORIGINS: str = (
+        "http://127.0.0.1:5173,http://localhost:5173,https://demons-xm.github.io"
+    )
 
     REDIS_URL: str = "redis://127.0.0.1:6379/0"
     MEMORY_TTL_SECONDS: int = 1800

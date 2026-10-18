@@ -216,7 +216,9 @@ print(token)
 | `HF_EMBEDDING_MODEL_NAME` | `BAAI/bge-small-zh-v1.5` | 本地 Hugging Face Embedding 模型 |
 | `JWT_EXPIRE_HOURS` | `24` | README 本地测试 Token 示例使用的期限 |
 | `JWT_ALGORITHM` | `"HS256"` | JWT 验签算法 |
-| `CORS_ALLOWED_ORIGINS` | `http://127.0.0.1:5173,http://localhost:5173` | 允许的浏览器来源，逗号分隔；需包含协议和端口 |
+| `CORS_ALLOWED_ORIGINS` | `http://127.0.0.1:5173,http://localhost:5173,https://demons-xm.github.io` | 允许的浏览器来源，逗号分隔；需包含协议和端口 |
+
+> GitHub Pages 临时演示会通过本机后端 HTTPS 隧道访问 API。隧道地址是 API 地址，不是浏览器 `Origin`；CORS 允许列表中应加入 Pages 来源 `https://demons-xm.github.io`，而不是隧道域名。
 
 #### 存储、记忆和请求控制
 
@@ -718,7 +720,7 @@ Invoke-RestMethod `
 
 ### 前端联调
 
-前端默认使用 `http://127.0.0.1:8000/api/v1`。后端默认允许 `http://127.0.0.1:5173` 和 `http://localhost:5173`。若 Vite 端口变化或通过其他主机访问，编辑 `CORS_ALLOWED_ORIGINS`（完整来源，含 scheme/port）并重启后端。
+前端本地开发默认使用 `http://127.0.0.1:8000/api/v1`。后端默认允许本地 Vite 来源和项目 GitHub Pages 来源 `https://demons-xm.github.io`。若 Vite 端口变化或通过其他主机访问，编辑 `CORS_ALLOWED_ORIGINS`（完整来源，含 scheme/port）并重启后端。
 
 前端连接设置需配置：
 
@@ -730,6 +732,10 @@ Invoke-RestMethod `
 | 租户 ID | `default` 或对应知识目录租户 |
 
 CORS 仅解决浏览器跨源访问，不会启动后端，也不会替代 JWT 或 API 授权。
+
+### GitHub Pages 临时演示
+
+前端部署工作流和本机 FastAPI 临时隧道的步骤见[前端 README](../frontend/README.md#临时演示github-pages-前端--本机-fastapi-后端)。GitHub Pages 无法访问用户机器上的 `localhost`；演示时须保持本机后端和 HTTPS 隧道运行，并在前端连接设置中配置隧道 API 地址。隧道公开后端期间，任何能访问隧道的人都可能调用尚未鉴权的 API，因此只使用测试数据和短期凭据，演示结束即关闭隧道。
 
 ## 部署和安全建议
 

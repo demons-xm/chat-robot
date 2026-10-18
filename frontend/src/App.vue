@@ -33,7 +33,10 @@ if (savedSettings) {
 }
 
 const settings = ref<ApiSettings>({
-  baseUrl: parsedSettings.baseUrl ?? 'http://127.0.0.1:8000/api/v1',
+  baseUrl:
+    parsedSettings.baseUrl ??
+    import.meta.env.VITE_API_BASE_URL ??
+    (import.meta.env.DEV ? 'http://127.0.0.1:8000/api/v1' : ''),
   token: parsedSettings.token ?? '',
   userId: parsedSettings.userId ?? 'u-001',
   tenantId: parsedSettings.tenantId ?? 'default',
@@ -596,7 +599,7 @@ onMounted(() => {
     <div v-if="settingsOpen" class="modal-backdrop" @click.self="settingsOpen = false">
       <section class="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
         <div class="modal-heading"><div><span class="modal-icon">⚙</span><h2 id="settings-title">连接设置</h2><p>配置客服 API 地址、JWT 鉴权及当前用户上下文。</p></div><button class="modal-close" aria-label="关闭" @click="settingsOpen = false">×</button></div>
-        <label class="field-label" for="api-url">后端 API Base URL</label><input id="api-url" v-model="draftSettings.baseUrl" class="field-control" placeholder="http://127.0.0.1:8000/api/v1" />
+        <label class="field-label" for="api-url">后端 API Base URL</label><input id="api-url" v-model="draftSettings.baseUrl" class="field-control" placeholder="http://127.0.0.1:8000/api/v1" /><div class="field-inline-note"><span>ⓘ</span><span>Pages 演示请填写本机后端 HTTPS 隧道地址，并以 /api/v1 结尾。</span></div>
         <label class="field-label" for="api-token">JWT Bearer Token <span>主问答必填</span></label><textarea id="api-token" v-model="draftSettings.token" class="field-control textarea-control token-control" rows="3" placeholder="粘贴由认证服务签发的 JWT（不会发送到浏览器存储以外的第三方）" />
         <div class="field-grid settings-grid"><div><label class="field-label" for="user-id">用户 ID</label><input id="user-id" v-model="draftSettings.userId" class="field-control" /></div><div><label class="field-label" for="tenant-id">租户 ID</label><input id="tenant-id" v-model="draftSettings.tenantId" class="field-control" /></div></div>
         <div class="settings-note"><span>ⓘ</span><p>JWT 的 userId、user_id 或 sub 声明必须与这里填写的用户 ID 一致。其他工具接口按当前租户范围调试。</p></div>
