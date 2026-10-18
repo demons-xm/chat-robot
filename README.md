@@ -44,19 +44,19 @@
 
 主工作区用于多轮客服问答，展示 Agent 路由、参考资料和会话记忆状态。
 
-![智能客服对话工作台](data/pictures/智能客服.png)
+![智能客服对话工作台](backend/data/pictures/智能客服.png)
 
 #### 能力调试
 
 能力调试页可分别测试意图识别、知识检索、Agent 路由和三级记忆接口。
 
-![能力调试页面](data/pictures/能力调试.png)
+![能力调试页面](backend/data/pictures/能力调试.png)
 
 #### 质量评测
 
 质量评测页支持单条 LLM-as-Judge 评测及批量回归评测。
 
-![质量评测页面](data/pictures/质量评测.png)
+![质量评测页面](backend/data/pictures/质量评测.png)
 
 ## 技术组件和数据流
 
@@ -318,7 +318,7 @@ print(token)
 
 启动服务后，也可打开 <http://127.0.0.1:8000/docs> 查看 Swagger UI 中的在线接口说明。下图展示当前 API 分组和主要端点：
 
-![Swagger API 文档中的接口列表](data/pictures/docs.png)
+![Swagger API 文档中的接口列表](backend/data/pictures/docs.png)
 
 ### 常见 HTTP 状态码
 
