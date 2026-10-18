@@ -1,0 +1,39 @@
+# Secrets and local environment
+**/.env
+**/.env.*
+!**/.env.example
+
+# Python
+**/.venv/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+
+# Frontend dependencies and build output
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/coverage/
+**/*.tsbuildinfo
+**/.eslintcache
+
+# Local runtime data
+backend/data/chroma_db/
+backend/data/history/
+backend/data/logger/
+backend/data/agent_evaluations.sqlite3
+backend/data/*.log
+backend/data/md5*.txt
+*.sqlite
+*.sqlite3
+*.db
+*.log
+
+# Local editor and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local scratch file
+/新建 文本文档.txt
